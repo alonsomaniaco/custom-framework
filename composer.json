@@ -1,0 +1,11 @@
+{
+  "name": "alonsomaniaco/custom-framework",
+  "description": "Example repository for the blog post about symfony components in www.ladrupalera.com",
+  "type": "project",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "customFramework\\": "src/"
+    }
+  }
+}

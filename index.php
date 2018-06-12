@@ -1,4 +1,7 @@
 <?php
+
+require_once 'vendor/autoload.php';
+
 $dbObject = new mysqli('db', 'root', '123', 'customFramework');
 
 ?>
