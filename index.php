@@ -1,8 +1,11 @@
 <?php
 
+use customFramework\helper\doctrine\DoctrineHelper;
+use customFramework\model\Person;
+
 require_once 'vendor/autoload.php';
 
-$dbObject = new mysqli('db', 'root', '123', 'customFramework');
+$personRepository = DoctrineHelper::getRepository(Person::class);
 
 ?>
 
@@ -16,9 +19,10 @@ $dbObject = new mysqli('db', 'root', '123', 'customFramework');
 <h1>Listado de personas</h1>
 <ul>
   <?php
-  $result = $dbObject->query('select * from Persons;');
-  foreach ($result as $row) {
-    echo "<li><a href='persons.php?person=" . $row['id'] . "'>" . $row['name'] . "</a></li>";
+  // Get an array of Person to use on foreach.
+  $allPerson = $personRepository->findAll();
+  foreach ($allPerson as $person) {
+    echo "<li><a href='persons.php?person=" . $person->getId() . "'>" . $person->getName() . "</a></li>";
   }
   ?>
 </ul>

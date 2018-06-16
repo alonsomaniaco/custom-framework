@@ -2,7 +2,10 @@
   "name": "alonsomaniaco/custom-framework",
   "description": "Example repository for the blog post about symfony components in www.ladrupalera.com",
   "type": "project",
-  "require": {},
+  "require": {
+    "php": "^7.1",
+    "doctrine/orm": "^2.6"
+  },
   "autoload": {
     "psr-4": {
       "customFramework\\": "src/"
