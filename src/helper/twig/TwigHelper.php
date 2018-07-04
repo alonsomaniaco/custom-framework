@@ -32,19 +32,24 @@ class TwigHelper {
   }
 
   /**
-   * Render template and print it.
+   * Render template and returns it content.
    *
    * @param $templateName
    *   Template file name.
    * @param array $variables
    *   Variables to include on template.
+   *
+   * @return string
+   *  Template content.
    */
   public static function renderTemplate($templateName, $variables = array()) {
     $twigRender = self::getTwigRender();
+    $renderedContent = '';
     try {
-      echo $twigRender->render($templateName . '.twig', $variables);
+      $renderedContent = $twigRender->render($templateName . '.twig', $variables);
     } catch (\Twig_Error $e) {
       // we can include any php log for our application.
     }
+    return $renderedContent;
   }
 }

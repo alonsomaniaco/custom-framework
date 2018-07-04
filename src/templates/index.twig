@@ -8,7 +8,7 @@
     <h1>Persons list</h1>
     <ul>
         {% for Person in Persons %}
-            <li><a href='/persons.php?person={{ Person.id }}'>{{ Person.name }}</a></li>
+            <li><a href='/person/{{ Person.id }}'>{{ Person.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

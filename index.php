@@ -1,15 +1,20 @@
 <?php
 
-use customFramework\helper\doctrine\DoctrineHelper;
 use customFramework\helper\twig\TwigHelper;
-use customFramework\model\Person;
+use customFramework\kernel\CustomFrameworkHttpKernel;
+use Symfony\Component\HttpFoundation\Request;
 
 require_once 'vendor/autoload.php';
 
-$personRepository = DoctrineHelper::getRepository(Person::class);
-// Get an array of Person to use on foreach.
-$allPerson = $personRepository->findAll();
-TwigHelper::renderTemplate('index', [
-  'Persons' => $allPerson,
-]);
+try {
+  $request = Request::createFromGlobals();
+  $kernel = CustomFrameworkHttpKernel::getInstance();
+  $response = $kernel->handle($request);
+  $response->send();
+} catch (Exception $e) {
+  echo TwigHelper::renderTemplate('error', array(
+    'message' => $e->getMessage(),
+    'stackTrace' => $e->getTraceAsString(), $e->getTrace()
+  ));
+}
 
