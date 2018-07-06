@@ -3,6 +3,7 @@
 namespace customFramework\helper\doctrine;
 
 
+use customFramework\helper\config\ConfigHelper;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
@@ -35,14 +36,11 @@ class DoctrineHelper {
          */
         $config = Setup::createAnnotationMetadataConfiguration([getcwd() . '/src/model/'], TRUE, NULL, NULL, FALSE);
 
-        // Database connection properties.
-        $connectionOptions = [
-          'driver' => 'pdo_mysql',
-          'host' => 'db',
-          'dbname' => 'customFramework',
-          'user' => 'root',
-          'password' => '123',
-        ];
+        // Load configurations from YML.
+        $connectionOptions = ConfigHelper::getConfigParameters('database');
+        // Add mysql driver.
+        $connectionOptions += ['driver' => 'pdo_mysql'];
+
         self::$entityManager = EntityManager::create($connectionOptions, $config);
       } catch (ORMException $e) {
         // we can include any php log for our application.

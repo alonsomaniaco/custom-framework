@@ -1,0 +1,9 @@
+index:
+  path: /
+  controller: 'customFramework\controller\PersonsController::indexAction'
+
+asignatura:
+  path: /person/{id}
+  controller: 'customFramework\controller\PersonsController::getPersonAction'
+  requirements:
+    id: '\d+'
