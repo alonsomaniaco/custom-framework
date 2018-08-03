@@ -2,7 +2,7 @@ index:
   path: /
   controller: 'customFramework\controller\PersonsController::indexAction'
 
-asignatura:
+person:
   path: /person/{id}
   controller: 'customFramework\controller\PersonsController::getPersonAction'
   requirements:
